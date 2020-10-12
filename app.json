@@ -1,26 +1,27 @@
 {
   "expo": {
-    "name": "mpg-mobile-app",
-    "slug": "mpg-mobile-app",
+    "name": "app",
+    "slug": "app",
+    "privacy": "public",
+    "sdkVersion": "36.0.0",
+    "platforms": ["ios", "android", "web"],
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "https://upload.wikimedia.org/wikipedia/fr/c/cb/Logo_MPG.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true
     },
-    "web": {
-      "favicon": "./assets/favicon.png"
-    }
-  }
+    "entryPoint": "node_modules/expo/AppEntry.js"
+  },
+  "displayName": "app",
+  "name": "app"
 }
