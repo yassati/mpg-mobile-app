@@ -30,9 +30,7 @@ export default class TestModal extends Component {
       this.props.route.params &&
       this.props.route.params.id.replace("player_", "");
 
-    return fetch(
-      `https://api.monpetitgazon.com/stats/player/220160?season=2020`
-    )
+    return fetch(`https://api.monpetitgazon.com/stats/player/${id}?season=2020`)
       .then(response => response.json())
       .then(responseJson => {
         this.setState(
@@ -72,8 +70,6 @@ export default class TestModal extends Component {
         </View>
       );
     }
-    console.log("------------------", this.state.dataSource.birthDate);
-    console.log(this.state.dataSource);
     const data = this.state.dataSource;
     return (
       <ScrollView keyboardShouldPersistTaps="handled">
@@ -126,10 +122,21 @@ export default class TestModal extends Component {
                     Goals(Pen) : {data.stats.sumGoals}({data.stats.sumPenalties}
                     )
                   </Text>
+                  <Text style={styles.infos}>
+                    GoalAssist : {data.stats.sumGoalAssist}
+                  </Text>
+                  <Text style={styles.infos}>
+                    Cards :{" "}
+                    <Text style={{ backgroundColor: "red", color: "white" }}>
+                      {data.stats.sumRedCard}
+                    </Text>{" "}
+                    <Text style={{ backgroundColor: "orange", color: "white" }}>
+                      {data.stats.sumYellowCard}
+                    </Text>
+                  </Text>
+
                   <Text style={styles.infos}>quotation : {data.quotation}</Text>
-                  <Text style={styles.infos}>birthDate : {data.birthDate}</Text>
                   <Text style={styles.infos}>twitter : {data.twitter}</Text>
-                  <Text style={styles.infos}>nbMatch : {data.nbMatch}</Text>
                   <TouchableOpacity
                     onPress={this.onShare}
                     style={{
@@ -147,7 +154,7 @@ export default class TestModal extends Component {
                     }}
                   >
                     <Text style={{ color: "white" }}>
-                      Share my favorite character
+                      Share my favorite player
                     </Text>
                   </TouchableOpacity>
                 </View>

@@ -11,14 +11,18 @@ import {
   TouchableOpacity,
   Vibration
 } from "react-native";
-import { Button, Card } from "react-native-paper";
+import { TextInput, Button, Card } from "react-native-paper";
 import * as RootNavigation from "../RootNavigation";
 import positions from "../helpers/positions";
+import Fuse from "fuse.js";
+
+let fuse;
 
 export default class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      text: "",
       isLoading: true,
       dataSource: []
     };
@@ -27,6 +31,20 @@ export default class Home extends Component {
     return fetch("https://api.monpetitgazon.com/stats/championship/1/2020")
       .then(response => response.json())
       .then(responseJson => {
+        const final = responseJson.map(player => {
+          return {
+            ...player,
+            position:
+              positions[player.ultraPosition] &&
+              positions[player.ultraPosition].position
+          };
+        });
+        fuse = new Fuse(final, {
+          keys: ["firstname", "lastname", "club", "position"],
+          distance: 500,
+          threshold: 0.2
+        });
+
         this.setState(
           {
             isLoading: false,
@@ -52,6 +70,27 @@ export default class Home extends Component {
       <ScrollView keyboardShouldPersistTaps="handled">
         <SafeAreaView>
           <View style={styles.container}>
+            <TextInput
+              label="name or position"
+              value={this.state.text}
+              onChangeText={value => {
+                if (value === "") {
+                  this.setState({
+                    text: value,
+                    dataSource: fuse._docs
+                  });
+                } else {
+                  let res = fuse.search(value);
+                  this.setState({
+                    text: value,
+                    dataSource: res.map(obj => {
+                      return obj.item;
+                    })
+                  });
+                }
+              }}
+              style={{ margin: 20 }}
+            />
             {this.state.dataSource.map(item => {
               return (
                 <Card key={item.id} style={styles.card}>
