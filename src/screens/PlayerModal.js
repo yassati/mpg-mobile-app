@@ -49,7 +49,7 @@ export default class TestModal extends Component {
   onShare = async () => {
     try {
       await Share.share({
-        message: `My favorite player is ${this.props &&
+        message: `Mon joueur préféré est ${this.props &&
           this.props.route &&
           this.props.route.params &&
           this.props.route.params.name} (${this.props &&
@@ -113,20 +113,22 @@ export default class TestModal extends Component {
                   />
                 </View>
                 <View style={{ margin: 20, alignItems: "center" }}>
-                  <Text style={styles.infos}>club : {data.club}</Text>
+                  <Text style={styles.infos}>Club : {data.club}</Text>
                   <Text style={styles.infos}>
-                    position : {positions[data.ultraPosition].position}
-                  </Text>
-                  <Text style={styles.infos}>Rate : {data.stats.avgRate}</Text>
-                  <Text style={styles.infos}>
-                    Goals(Pen) : {data.stats.sumGoals}({data.stats.sumPenalties}
-                    )
+                    Position : {positions[data.ultraPosition].position}
                   </Text>
                   <Text style={styles.infos}>
-                    GoalAssist : {data.stats.sumGoalAssist}
+                    Note moyenne : {data.stats.avgRate}
                   </Text>
                   <Text style={styles.infos}>
-                    Cards :{" "}
+                    Buts (pén.) : {data.stats.sumGoals}(
+                    {data.stats.sumPenalties})
+                  </Text>
+                  <Text style={styles.infos}>
+                    Passes dé. : {data.stats.sumGoalAssist}
+                  </Text>
+                  <Text style={styles.infos}>
+                    Cartons :{" "}
                     <Text style={{ backgroundColor: "red", color: "white" }}>
                       {data.stats.sumRedCard}
                     </Text>{" "}
@@ -135,8 +137,8 @@ export default class TestModal extends Component {
                     </Text>
                   </Text>
 
-                  <Text style={styles.infos}>quotation : {data.quotation}</Text>
-                  <Text style={styles.infos}>twitter : {data.twitter}</Text>
+                  <Text style={styles.infos}>Cote : {data.quotation}</Text>
+                  <Text style={styles.infos}>Twitter : {data.twitter}</Text>
                   <TouchableOpacity
                     onPress={this.onShare}
                     style={{
@@ -154,7 +156,7 @@ export default class TestModal extends Component {
                     }}
                   >
                     <Text style={{ color: "white" }}>
-                      Share my favorite player
+                      Partagez mon lecteur préféré
                     </Text>
                   </TouchableOpacity>
                 </View>

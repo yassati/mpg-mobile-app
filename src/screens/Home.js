@@ -71,7 +71,7 @@ export default class Home extends Component {
         <SafeAreaView>
           <View style={styles.container}>
             <TextInput
-              label="name or position"
+              label="Nom ou Position ou Club"
               value={this.state.text}
               onChangeText={value => {
                 if (value === "") {
@@ -105,10 +105,10 @@ export default class Home extends Component {
                     />
                     <View style={{ flex: 1 }}>
                       <View style={{ marginLeft: 20 }}>
-                        <Text style={styles.owner_title}>
+                        <Text style={styles.title}>
                           {item.lastname} {item.firstname}
                         </Text>
-                        <Text style={styles.owner_title}>
+                        <Text style={styles.title}>
                           {item.club} ({positions[item.ultraPosition].position})
                         </Text>
                         <TouchableOpacity
@@ -122,7 +122,7 @@ export default class Home extends Component {
                           }}
                         >
                           <Text style={{ color: "gray" }}>
-                            See more details...
+                            Voir plus de détails ...
                           </Text>
                         </TouchableOpacity>
                       </View>
@@ -162,12 +162,9 @@ const styles = StyleSheet.create({
     alignItems: "center"
   },
   avatar: { width: 80, height: 120, borderRadius: 10 },
-  owner_title: {
+  title: {
     color: "black",
     fontWeight: "bold",
     fontSize: 20
-  },
-  owner_infos: {
-    textAlign: "justify"
   }
 });
