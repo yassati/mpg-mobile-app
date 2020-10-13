@@ -73,8 +73,8 @@ export default class Home extends Component {
                           onPress={() => {
                             RootNavigation.navigate("TestModal", {
                               id: item.id,
-                              lastname: item.lastname,
-                              firstname: item.firstname
+                              name: `${item.firstname} ${item.lastname}`,
+                              club: item.club
                             }),
                               Vibration.vibrate([0, 500, 100, 200]);
                           }}

@@ -28,10 +28,10 @@ export default class TestModal extends Component {
       this.props.route &&
       this.props.route.params &&
       this.props.route.params.id.replace("player_", "");
-    console.log(id);
-    // id = id.replace("player_", "");
 
-    return fetch(`https://api.monpetitgazon.com/stats/player/${id}?season=2020`)
+    return fetch(
+      `https://api.monpetitgazon.com/stats/player/220160?season=2020`
+    )
       .then(response => response.json())
       .then(responseJson => {
         this.setState(
@@ -50,10 +50,13 @@ export default class TestModal extends Component {
   onShare = async () => {
     try {
       await Share.share({
-        message: `My player is ${this.props &&
+        message: `My favorite player is ${this.props &&
           this.props.route &&
           this.props.route.params &&
-          this.props.route.params.name}`
+          this.props.route.params.name} (${this.props &&
+          this.props.route &&
+          this.props.route.params &&
+          this.props.route.params.club})`
       });
     } catch (error) {
       alert(error.message);
@@ -68,93 +71,96 @@ export default class TestModal extends Component {
         </View>
       );
     }
+    console.log(this.state.dataSource.birthDate);
     console.log(this.state.dataSource);
     return (
       <ScrollView keyboardShouldPersistTaps="handled">
         <SafeAreaView>
-          {/* <View>
-            {this.state.dataSource.map(item => {
-              return (
-                <View key={item.char_id}>
-                  <View style={styles.header}>
-                    <Button
-                      onPress={() => {
-                        RootNavigation.pop();
-                      }}
-                    >
-                      <Icon name="times" size={30} color="white" />
-                    </Button>
+          <View>
+            {/* {this.state.dataSource.map(item => { */}
+            {/* return ( */}
+            <View key={this.state.dataSource.id}>
+              <View style={styles.header}>
+                <Button
+                  onPress={() => {
+                    RootNavigation.pop();
+                  }}
+                >
+                  <Icon name="times" size={30} color="white" />
+                </Button>
 
-                    <Text
-                      style={{
-                        color: "white",
-                        fontWeight: "bold",
-                        fontSize: 30
-                      }}
-                    >
-                      {item.name}
-                    </Text>
-                  </View>
-                  <Card style={styles.card}>
-                    <View
-                      style={{
-                        marginLeft: "auto",
-                        marginRight: "auto",
-                        marginTop: 25
-                      }}
-                    >
-                      <Image
-                        style={[{ width: 200, height: 200 }, styles.avatar]}
-                        resizeMode="contain"
-                        source={{
-                          uri: `${item.img}`
-                        }}
-                      />
-                    </View>
-                    <View style={{ margin: 20, alignItems: "center" }}>
-                      <Text style={styles.infos}>
-                        Nickname : {item.nickname}
-                      </Text>
-                      {item.birthday == "Unknown" ? null : (
-                        <Text style={styles.infos}>
-                          Birthday : {item.birthday}
-                        </Text>
-                      )}
-                      <Text style={styles.infos}>
-                        Portrayed : {item.portrayed}
-                      </Text>
-                      <Text style={styles.infos}>
-                        Occupation : {item.occupation}
-                      </Text>
-                      {item.status == "?" ? null : (
-                        <Text style={styles.infos}>Status : {item.status}</Text>
-                      )}
-                      <TouchableOpacity
-                        onPress={this.onShare}
-                        style={{
-                          backgroundColor: "#f7b731",
-                          padding: 12,
-                          justifyContent: "center",
-                          alignItems: "center",
-                          borderRadius: 20,
-                          borderColor: "rgba(0, 0, 0, 0.1)",
-                          fontWeight: "bold",
-                          width: 220,
-                          marginLeft: "auto",
-                          marginTop: 20,
-                          marginRight: "auto"
-                        }}
-                      >
-                        <Text style={{ color: "white" }}>
-                          Share my favorite character
-                        </Text>
-                      </TouchableOpacity>
-                    </View>
-                  </Card>
+                <Text
+                  style={{
+                    color: "white",
+                    fontWeight: "bold",
+                    fontSize: 30
+                  }}
+                >
+                  {this.state.dataSource.firstname}{" "}
+                  {this.state.dataSource.lastname}
+                </Text>
+              </View>
+              <Card style={styles.card}>
+                <View
+                  style={{
+                    marginLeft: "auto",
+                    marginRight: "auto",
+                    marginTop: 25
+                  }}
+                >
+                  <Image
+                    style={[{ width: 200, height: 200 }, styles.avatar]}
+                    resizeMode="contain"
+                    source={{
+                      uri:
+                        "https://pbs.twimg.com/profile_images/1311585974460321792/etZwevH__400x400.jpg"
+                    }}
+                  />
                 </View>
-              );
-            })}
-          </View> */}
+                <View style={{ margin: 20, alignItems: "center" }}>
+                  <Text style={styles.infos}>
+                    club : {this.state.dataSource.club}
+                  </Text>
+                  <Text style={styles.infos}>
+                    avgRate : {this.state.dataSource.avgRate}
+                  </Text>
+                  <Text style={styles.infos}>
+                    birthDate : {this.state.dataSource.birthDate}
+                  </Text>
+                  <Text style={styles.infos}>
+                    twitter : {this.state.dataSource.twitter}
+                  </Text>
+                  <Text style={styles.infos}>
+                    nbMatch : {this.state.dataSource.nbMatch}
+                  </Text>
+                  {/* {item.status == "?" ? null : (
+                        <Text style={styles.infos}>Status : {item.status}</Text>
+                      )} */}
+                  <TouchableOpacity
+                    onPress={this.onShare}
+                    style={{
+                      backgroundColor: "#58D757",
+                      padding: 12,
+                      justifyContent: "center",
+                      alignItems: "center",
+                      borderRadius: 20,
+                      borderColor: "rgba(0, 0, 0, 0.1)",
+                      fontWeight: "bold",
+                      width: 220,
+                      marginLeft: "auto",
+                      marginTop: 20,
+                      marginRight: "auto"
+                    }}
+                  >
+                    <Text style={{ color: "white" }}>
+                      Share my favorite character
+                    </Text>
+                  </TouchableOpacity>
+                </View>
+              </Card>
+            </View>
+            {/* ); })} */}
+          </View>
         </SafeAreaView>
       </ScrollView>
     );
@@ -199,7 +205,7 @@ const styles = StyleSheet.create({
     fontSize: 18
   },
   header: {
-    backgroundColor: "#f7b731",
+    backgroundColor: "#58D757",
     paddingLeft: 10,
     paddingRight: 10,
     paddingTop: 5,

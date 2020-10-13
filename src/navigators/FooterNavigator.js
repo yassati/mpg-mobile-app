@@ -20,7 +20,7 @@ export default class FooterNavigator extends React.Component {
           component={HomeNavigator}
           options={{
             tabBarLabel: "Home",
-            tabBarIcon: () => <Icon name="home" color={"#f7b731"} size={20} />
+            tabBarIcon: () => <Icon name="home" color={"#58D757"} size={20} />
           }}
         />
         <Tab.Screen
@@ -29,7 +29,7 @@ export default class FooterNavigator extends React.Component {
           options={{
             tabBarLabel: "Info",
             tabBarIcon: () => (
-              <Icon name="info-circle" color={"#f7b731"} size={20} />
+              <Icon name="info-circle" color={"#58D757"} size={20} />
             )
           }}
         />
