@@ -1,1 +1,3 @@
-# react-native-app
+# Technical test MPG
+
+React Native
