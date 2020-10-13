@@ -1,20 +1,6 @@
 import React, { Component } from "react";
-import {
-  View,
-  Text,
-  ScrollView,
-  SafeAreaView,
-  StyleSheet,
-  Image,
-  ActivityIndicator,
-  TouchableOpacity,
-  Share,
-  Linking
-} from "react-native";
-import { WebView } from "react-native-webview";
-import * as RootNavigation from "../RootNavigation";
-import Icon from "react-native-vector-icons/FontAwesome5";
-import { Button, Card } from "react-native-paper";
+import { View, Text, ScrollView, SafeAreaView, StyleSheet } from "react-native";
+import { Card } from "react-native-paper";
 
 export default class Info extends Component {
   constructor(props) {

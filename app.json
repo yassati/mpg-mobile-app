@@ -1,10 +1,18 @@
 {
   "expo": {
-    "name": "app",
-    "slug": "app",
+    "name": "mpg",
+    "slug": "mpg",
     "privacy": "public",
     "sdkVersion": "36.0.0",
     "platforms": ["ios", "android", "web"],
+    "android": {
+      "package": "com.yassine.mpg",
+      "versionCode": 1
+    },
+    "ios": {
+      "bundleIdentifier": "com.yassine.mpg",
+      "buildNumber": "1.0.0"
+    },
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -17,9 +25,7 @@
       "fallbackToCacheTimeout": 0
     },
     "assetBundlePatterns": ["**/*"],
-    "ios": {
-      "supportsTablet": true
-    },
+
     "entryPoint": "node_modules/expo/AppEntry.js"
   },
   "displayName": "app",

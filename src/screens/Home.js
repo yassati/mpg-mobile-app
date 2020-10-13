@@ -7,7 +7,6 @@ import {
   SafeAreaView,
   ActivityIndicator,
   Image,
-  Share,
   TouchableOpacity,
   Vibration
 } from "react-native";
