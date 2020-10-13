@@ -13,6 +13,7 @@ import {
 } from "react-native";
 import { Button, Card } from "react-native-paper";
 import * as RootNavigation from "../RootNavigation";
+import positions from "../helpers/positions";
 
 export default class Home extends Component {
   constructor(props) {
@@ -68,7 +69,9 @@ export default class Home extends Component {
                         <Text style={styles.owner_title}>
                           {item.lastname} {item.firstname}
                         </Text>
-                        <Text style={styles.owner_title}>{item.club}</Text>
+                        <Text style={styles.owner_title}>
+                          {item.club} ({positions[item.ultraPosition].position})
+                        </Text>
                         <TouchableOpacity
                           onPress={() => {
                             RootNavigation.navigate("TestModal", {

@@ -13,6 +13,7 @@ import {
 import * as RootNavigation from "../RootNavigation";
 import Icon from "react-native-vector-icons/FontAwesome5";
 import { Button, Card } from "react-native-paper";
+import positions from "../helpers/positions";
 
 export default class TestModal extends Component {
   constructor(props) {
@@ -71,15 +72,14 @@ export default class TestModal extends Component {
         </View>
       );
     }
-    console.log(this.state.dataSource.birthDate);
+    console.log("------------------", this.state.dataSource.birthDate);
     console.log(this.state.dataSource);
+    const data = this.state.dataSource;
     return (
       <ScrollView keyboardShouldPersistTaps="handled">
         <SafeAreaView>
           <View>
-            {/* {this.state.dataSource.map(item => { */}
-            {/* return ( */}
-            <View key={this.state.dataSource.id}>
+            <View key={data.id}>
               <View style={styles.header}>
                 <Button
                   onPress={() => {
@@ -96,8 +96,7 @@ export default class TestModal extends Component {
                     fontSize: 30
                   }}
                 >
-                  {this.state.dataSource.firstname}{" "}
-                  {this.state.dataSource.lastname}
+                  {data.firstname} {data.lastname}
                 </Text>
               </View>
               <Card style={styles.card}>
@@ -109,7 +108,7 @@ export default class TestModal extends Component {
                   }}
                 >
                   <Image
-                    style={[{ width: 200, height: 200 }, styles.avatar]}
+                    style={styles.avatar}
                     resizeMode="contain"
                     source={{
                       uri:
@@ -118,24 +117,19 @@ export default class TestModal extends Component {
                   />
                 </View>
                 <View style={{ margin: 20, alignItems: "center" }}>
+                  <Text style={styles.infos}>club : {data.club}</Text>
                   <Text style={styles.infos}>
-                    club : {this.state.dataSource.club}
+                    position : {positions[data.ultraPosition].position}
                   </Text>
+                  <Text style={styles.infos}>Rate : {data.stats.avgRate}</Text>
                   <Text style={styles.infos}>
-                    avgRate : {this.state.dataSource.avgRate}
+                    Goals(Pen) : {data.stats.sumGoals}({data.stats.sumPenalties}
+                    )
                   </Text>
-                  <Text style={styles.infos}>
-                    birthDate : {this.state.dataSource.birthDate}
-                  </Text>
-                  <Text style={styles.infos}>
-                    twitter : {this.state.dataSource.twitter}
-                  </Text>
-                  <Text style={styles.infos}>
-                    nbMatch : {this.state.dataSource.nbMatch}
-                  </Text>
-                  {/* {item.status == "?" ? null : (
-                        <Text style={styles.infos}>Status : {item.status}</Text>
-                      )} */}
+                  <Text style={styles.infos}>quotation : {data.quotation}</Text>
+                  <Text style={styles.infos}>birthDate : {data.birthDate}</Text>
+                  <Text style={styles.infos}>twitter : {data.twitter}</Text>
+                  <Text style={styles.infos}>nbMatch : {data.nbMatch}</Text>
                   <TouchableOpacity
                     onPress={this.onShare}
                     style={{
@@ -159,7 +153,6 @@ export default class TestModal extends Component {
                 </View>
               </Card>
             </View>
-            {/* ); })} */}
           </View>
         </SafeAreaView>
       </ScrollView>
@@ -191,7 +184,9 @@ const styles = StyleSheet.create({
     alignItems: "center"
   },
   avatar: {
-    borderRadius: 10
+    borderRadius: 10,
+    width: 100,
+    height: 100
   },
   owner_title: {
     color: "black",
